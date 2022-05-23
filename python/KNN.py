@@ -1,7 +1,7 @@
 ## Source Code Practice for K Nearest Neighbors
-# Highlights:
-# distance method: euclidean distance
-from cmath import sqrt
+# KNN works for both regression or classification problem
+# eg: find the average rent price near my house
+
 import numpy as np
 from collections import Counter
 
@@ -16,9 +16,9 @@ class KNN:
 
         Parameters
         ----------
-        x : two dimensional array
+        x_train : two dimensional array
             training data points axis values
-        y : one dimensional array or list
+        y_train : one dimensional array or list
             training data points designated label/value
         """
 
@@ -30,9 +30,9 @@ class KNN:
 
         Parameters
         ----------
-        point_1 : list or array
+        point_1 : array
             axis value for point 1 
-        point_2 : list or array
+        point_2 : array
             axis value for point 2 
 
         Returns
@@ -40,7 +40,7 @@ class KNN:
         float
             euclidean distance value for the two data points
         """
-        axis_distance = point_1-point_2
+        axis_distance = np.array(point_1)-np.array(point_2)
         
         return np.dot(axis_distance, axis_distance)
 
@@ -83,8 +83,9 @@ class KNN:
 # test the algorithm
 x_train = np.array([[0.1, 0.2, 1, 2, 4],
                     [0.2, 1, 0.5, 2, 4],
-                    [2, 0.2, 2,  3, 1]])
-y_train = np.array([1, 2, 1, 3, 2])
+                    [2, 0.2, 2,  3, 1],
+                    [0.5, 1, 0.5, 2, 1]])
+y_train = np.array([1, 2, 1, 3])
 
 KNN_test = KNN()
 KNN_test.train(x_train, y_train)
